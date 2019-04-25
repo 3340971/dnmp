@@ -12,6 +12,11 @@ RUN if [ "${REPLACE_SOURCE_LIST}" = "true" ]; then \
     rm -rf /etc/apt/sources.list.tmp; fi
 RUN apt update
 
+# Composer
+RUN curl -sS https://getcomposer.org/installer | php \
+    && mv composer.phar /usr/local/bin/composer \
+    && composer self-update --clean-backups
+
 # Install extensions from source
 COPY ./extensions /tmp/extensions
 RUN chmod +x /tmp/extensions/install.sh \
