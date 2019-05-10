@@ -63,3 +63,9 @@ if [ "${PHP_SWOOLE}" != "false" ]; then
     && ( cd swoole && phpize && ./configure && make $mc && make install ) \
     && docker-php-ext-enable swoole
 fi
+
+# 文件监控扩展,PHP7装2.0.0, PHP5.2~5.6装0.1.6
+mkdir inotify \
+    && tar -xf inotify-2.0.0.tgz -C inotify --strip-components=1 \
+    && ( cd inotify-2.0.0 && phpize && ./configure --enable-inotify && make $mc && make install ) \
+    && docker-php-ext-enable inotify
