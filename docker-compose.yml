@@ -9,7 +9,7 @@ services:
       - ${SOURCE_DIR}:/var/www/html/:rw
       - ${NGINX_CONFD_DIR}:/etc/nginx/conf.d/:rw
       - ${NGINX_CONF_FILE}:/etc/nginx/nginx.conf:ro
-      - ${NGINX_LOG_DIR}:/var/log/nginx/:rw
+      - ${LOG_DIR}:/var/log/nginx/:rw
       - ${VAR_RUN_DIR}:/var/run/:rw
     restart: always
     networks:
@@ -30,6 +30,7 @@ services:
       - ${SOURCE_DIR}:/var/www/html/:rw
       - ${PHP7_PHP_CONF_FILE}:/usr/local/etc/php/php.ini:ro
       - ${PHP7_FPM_CONF_FILE}:/usr/local/etc/php-fpm.d/www.conf:rw
+      - ${LOG_DIR}:/var/log/:rw
       - ${VAR_RUN_DIR}:/var/run/:rw
     restart: always
     cap_add:
